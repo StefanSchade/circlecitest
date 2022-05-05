@@ -32,7 +32,7 @@ jobs:
       - run:
           name: Run tests
           app-dir: ~/project/frontend
-          command: npm test
+          command: pwd
 
 workflows:
   # Below is the definition of your workflow.
