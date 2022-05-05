@@ -28,7 +28,7 @@ jobs:
           pkg-manager: npm
       - run:
           name: Run tests
-          command: npm test
+          command: npm test2
           working_directory: ./frontend/
 
 workflows:
