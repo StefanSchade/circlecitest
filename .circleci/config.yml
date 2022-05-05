@@ -31,8 +31,7 @@ jobs:
           app-dir: ~/project/frontend
       - run:
           name: Run tests
-          app-dir: ~/project/frontend
-          command: pwd
+          command: cd frontend; pwd
 
 workflows:
   # Below is the definition of your workflow.
