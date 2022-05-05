@@ -28,8 +28,10 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
+          app-dir: ~/project/frontend
       - run:
           name: Run tests
+          app-dir: ~/project/frontend
           command: npm test2
 
 workflows:
