@@ -26,6 +26,8 @@ jobs:
       - run: pwd
       - restore_cache:
           key: v1-deps-{{ checksum "./frontend/package-lock.json" }}
+          paths:
+            - ./frontend/node_modules
       - run: cd frontend; npm test
 
 workflows:
