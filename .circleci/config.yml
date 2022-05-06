@@ -31,5 +31,5 @@ workflows:
     jobs:
       - frontend-install
       - frontend-test:
-          reuires:
+          requires:
             - frontend-install
