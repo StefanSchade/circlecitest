@@ -3,15 +3,26 @@
 version: 2.1
 
 jobs:
-  frontend:
+  frontend-install:
     docker:
       - image: cimg/node:16.10
     steps:
       - checkout
       - run: echo "install and test"
-      - run: cd frontend; npm install; npm test
+      - run: cd frontend; npm install
+
+frontend-test:
+  docker:
+    - image: cimg/node:16.10
+  steps:
+    - checkout
+    - run: echo "install and test"
+    - run: pwd
+    - run: cd frontend; npm test
+
 
 workflows:
   sample:
     jobs:
       - frontend
+      - test
