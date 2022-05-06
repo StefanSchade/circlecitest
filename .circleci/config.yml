@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:20.10.15-git
+      - image: cimg/base
     steps:
       - checkout
       - setup_remote_docker
