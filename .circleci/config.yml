@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /frontend/node_modules/
+          at: ./frontend/node_modules/
       - run: echo "install and test"
       - run: pwd
       - run: cd frontend; npm test
