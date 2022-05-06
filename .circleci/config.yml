@@ -16,18 +16,12 @@ jobs:
           key: v1-deps-{{ checksum "./frontend/package-lock.json" }}
           paths:
             - node_modules
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - ./frontend/node_modules/
 
   frontend-test:
     docker:
       - image: cimg/node:16.10
     steps:
       - checkout
-      - attach_workspace:
-          at: ./frontend/node_modules/
       - run: echo "install and test"
       - run: pwd
       - restore_cache:
