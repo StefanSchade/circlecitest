@@ -11,18 +11,17 @@ jobs:
       - run: echo "install and test"
       - run: cd frontend; npm install
 
-frontend-test:
-  docker:
-    - image: cimg/node:16.10
-  steps:
-    - checkout
-    - run: echo "install and test"
-    - run: pwd
-    - run: cd frontend; npm test
-
+  frontend-test:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - run: echo "install and test"
+      - run: pwd
+      - run: cd frontend; npm test
 
 workflows:
-  sample:
+  frontend:
     jobs:
       - frontend-install
       - frontend-test
