@@ -1,3 +1,5 @@
+# https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
+
 version: 2
 jobs:
   build:
@@ -10,14 +12,23 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/docker_layers.tar
+            - /caches/appdev.tar
       - run:
-          name: load docker image layer cache
+          name: Load docker image layer cache
           command: |
             set +o pipefail
             docker load -i /caches/docker_layers.tar | true
       - run:
-          name: use pulled image to build cache
+          name: Build application Docker image
           command: |
             cd frontend
             docker build --cache-from=appdev -t appdev .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/appdev.tar app
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/appdev.tar
