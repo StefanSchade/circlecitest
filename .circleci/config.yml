@@ -15,9 +15,9 @@ jobs:
           name: load docker image layer cache
           command: |
             set +o pipefail
-            docker load -i /caches/frontend.tar | true
+            docker load -i /caches/docker_layers.tar | true
       - run:
           name: use pulled image to build cache
           command: |
-            pwd
-            docker build -t frontend-in-docker .
+            cd frontend
+            docker build --cache-from=appdev -t appdev .
