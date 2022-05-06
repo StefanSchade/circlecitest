@@ -10,12 +10,18 @@ jobs:
       - checkout
       - run: echo "install and test"
       - run: cd frontend; npm install
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - /frontend/node_modules/
 
   frontend-test:
     docker:
       - image: cimg/node:16.10
     steps:
       - checkout
+      - attach_workspace:
+          at: /frontend/node_modules/
       - run: echo "install and test"
       - run: pwd
       - run: cd frontend; npm test
@@ -24,4 +30,6 @@ workflows:
   frontend:
     jobs:
       - frontend-install
-      - frontend-test
+      - frontend-test:
+          reuires:
+            - frontend-install
