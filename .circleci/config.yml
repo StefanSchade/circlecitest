@@ -1,24 +1,18 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/project/frontend
     docker:
       - image: docker:20.10.15-git
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: install dependencies
-          command: |
-            apk add --no-cache \
-              npm
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/frontend.tar
+            - /caches/docker_layers.tar
       - run:
-          name: load frontend docker image from cache
+          name: load docker image layer cache
           command: |
             set +o pipefail
             docker load -i /caches/frontend.tar | true
@@ -26,4 +20,4 @@ jobs:
           name: use pulled image to build cache
           command: |
             pwd
-            docker build --cache-from=frontend -t frontend .
+            docker build -t frontend-in-docker .
