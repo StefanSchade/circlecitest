@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /frontend
+    working_directory: ~/project/frontend
     docker:
       - image: docker:20.10.15-git
     steps:
