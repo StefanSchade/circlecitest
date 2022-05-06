@@ -14,7 +14,7 @@ jobs:
           paths:
             - /caches/appdev.tar
       - run:
-          name: Load docker image layer cache
+          name: Load stored docker image layers from cache
           command: |
             set +o pipefail
             docker load -i /caches/appdev.tar | true
@@ -24,9 +24,9 @@ jobs:
             cd frontend
             docker build --cache-from=appdev -t appdev .
       - run:
-          name: Save Docker image layer cache
+          name: Save docker image layers to cache
           command: |
-            mkdir -p /caches
+            sudo mkdir -p /caches
             docker save -o /caches/appdev.tar appdev
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
