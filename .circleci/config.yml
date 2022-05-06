@@ -25,4 +25,5 @@ jobs:
       - run:
           name: use pulled image to build cache
           command: |
+            pwd
             docker build --cache-from=frontend -t frontend .
