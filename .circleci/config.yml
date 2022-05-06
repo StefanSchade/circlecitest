@@ -23,11 +23,11 @@ jobs:
           command: |
             cd frontend
             docker build --cache-from=appdev -t appdev .
-      - run:
-          name: Save docker image layers to cache
-          command: |
-            sudo mkdir -p /caches
-            docker save -o /caches/appdev.tar appdev
+#      - run:
+#          name: Save docker image layers to cache
+#          command: |
+#            sudo mkdir -p /caches
+#            docker save -o /caches/appdev.tar appdev
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
