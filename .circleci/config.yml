@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Save Docker image layer cache
           command: |
-            mkdir -p /caches |
+            mkdir -p /caches
             docker save -o /caches/appdev.tar appdev
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
