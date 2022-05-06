@@ -4,18 +4,19 @@ version: 2.1
 
 jobs:
   frontend-install:
+    working_directory: /frontend
     docker:
       - image: cimg/node:16.10
     steps:
       - checkout
       - run: echo "install and test"
       - restore_cache:
-          key: v1-deps-{{ checksum "./frontend/package-lock.json" }}
+          key: v1-deps-{{ checksum "./package-lock.json" }}
       - run: cd frontend; npm install
       - save_cache:
-          key: v1-deps-{{ checksum "./frontend/package-lock.json" }}
+          key: v1-deps-{{ checksum "./package-lock.json" }}
           paths:
-            - ./frontend/node_modules
+            - ./node_modules
 
   frontend-test:
     docker:
